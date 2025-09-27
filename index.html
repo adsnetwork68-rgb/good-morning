@@ -42,15 +42,12 @@
       display: inline-block;
       margin-top: 20px;
     }
-    .play-btn {
-      background: #ff9800;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 1.2em;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
+    /* Fullscreen overlay */
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: transparent;
+      z-index: 9999;
     }
   </style>
 </head>
@@ -63,12 +60,9 @@
     <img src="ss.jpg" alt="Good Morning Flower">
 
     <!-- Kid Voice Greeting -->
-    <audio id="gmAudio">
+    <audio id="gmAudio" autoplay muted loop>
       <source src="kid-voice.mp3" type="audio/mpeg">
     </audio>
-
-    <!-- Play Button -->
-    <button id="playBtn" class="play-btn">🔊 Tap to Hear Greeting</button>
 
     <div class="message">
       🌞 Wishing you a bright and happy day ahead!  
@@ -105,17 +99,17 @@
   </script>
   <script type="text/javascript" src="//www.highperformanceformat.com/685a9849ddd497ecc466188fe3ed43b3/invoke.js"></script>
 
-  <script>
-    // Play audio on button click
-    const audio = document.getElementById("gmAudio");
-    const playBtn = document.getElementById("playBtn");
+  <!-- Overlay for first tap -->
+  <div id="overlay"></div>
 
-    playBtn.addEventListener("click", () => {
-      audio.play().then(() => {
-        playBtn.style.display = "none"; // Hide button once audio plays
-      }).catch(err => {
-        console.log("Play failed:", err);
-      });
+  <script>
+    const audio = document.getElementById("gmAudio");
+    const overlay = document.getElementById("overlay");
+
+    overlay.addEventListener("click", () => {
+      audio.muted = false;
+      audio.play().catch(err => console.log("Play blocked:", err));
+      overlay.remove(); // remove overlay after first tap
     });
   </script>
 
