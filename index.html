@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Good Morning 🌸</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #fffbe7;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      margin-top: 40px;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .message {
+      font-size: 1.4em;
+      margin-top: 20px;
+      color: #444;
+    }
+    .messages {
+      font-size: 1.0em;
+      margin-top: 20px;
+      color: #444;
+    }
+    .share-btn {
+      background: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 1.2em;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🌸 Good Morning 🌸</h2>
+    
+    <!-- Flower GIF -->
+    <img src="flower.gif" alt="Good Morning Flower">
+
+    <!-- Kid Voice Greeting -->
+    <audio id="gmAudio" autoplay muted playsinline>
+      <source src="kid-voice.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="message">
+      🌞 Wishing you a bright and happy day ahead!  
+    </div>
+
+    <br><br>
+
+    <div class="messages">
+        <p>Share to 3 friends and see the Magic !!!</p>
+    </div>
+
+    <!-- WhatsApp Share Button -->
+    <a id="shareBtn" class="share-btn" 
+       href="whatsapp://send?text=🌸 Good Morning! Brighten your day 👉 "
+       data-action="share/whatsapp/share">
+       Share on WhatsApp
+    </a>
+
+    <!-- Adsterra Banner -->
+    <div style="margin-top:30px;">
+      <!-- Paste your Adsterra code here -->
+      <p>[Ad Placeholder]</p>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener("load", function() {
+      const audio = document.getElementById("gmAudio");
+      audio.muted = false;
+      audio.play().catch(err => {
+        console.log("Autoplay blocked:", err);
+      });
+    });
+  </script>
+
+</body>
+</html>
