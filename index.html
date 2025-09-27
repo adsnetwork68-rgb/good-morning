@@ -42,6 +42,16 @@
       display: inline-block;
       margin-top: 20px;
     }
+    .play-btn {
+      background: #ff9800;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 1.2em;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -53,9 +63,12 @@
     <img src="ss.jpg" alt="Good Morning Flower">
 
     <!-- Kid Voice Greeting -->
-    <audio id="gmAudio" autoplay muted playsinline>
+    <audio id="gmAudio">
       <source src="kid-voice.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- Play Button -->
+    <button id="playBtn" class="play-btn">🔊 Tap to Hear Greeting</button>
 
     <div class="message">
       🌞 Wishing you a bright and happy day ahead!  
@@ -93,12 +106,15 @@
   <script type="text/javascript" src="//www.highperformanceformat.com/685a9849ddd497ecc466188fe3ed43b3/invoke.js"></script>
 
   <script>
-    // Try to unmute and autoplay audio
-    window.addEventListener("load", function() {
-      const audio = document.getElementById("gmAudio");
-      audio.muted = false;
-      audio.play().catch(err => {
-        console.log("Autoplay blocked:", err);
+    // Play audio on button click
+    const audio = document.getElementById("gmAudio");
+    const playBtn = document.getElementById("playBtn");
+
+    playBtn.addEventListener("click", () => {
+      audio.play().then(() => {
+        playBtn.style.display = "none"; // Hide button once audio plays
+      }).catch(err => {
+        console.log("Play failed:", err);
       });
     });
   </script>
